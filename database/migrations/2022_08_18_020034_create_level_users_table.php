@@ -14,7 +14,8 @@ class CreateLevelUsersTable extends Migration
     public function up()
     {
         Schema::create('level_users', function (Blueprint $table) {
-            $table->id();
+            $table->id('status_id');
+            $table->string('nama');
             $table->timestamps();
         });
     }
