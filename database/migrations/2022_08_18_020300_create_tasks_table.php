@@ -15,11 +15,13 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id('task_id');
-            $table->foreignId('user_id');
-            $table->foreignId('status_id');
+            $table->foreignId('user_id')->constrained();
+            $table->unsignedBigInteger('status_id');
             $table->string('name');
             $table->string('detail');
             $table->timestamps();
+
+            $table->foreign('status_id')->references('id')->on('status_tasks');
         });
     }
 

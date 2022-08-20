@@ -41,4 +41,34 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function admin()
+    {
+        return $this->hasOne(Admin::class);
+    }
+
+    public function karyawan()
+    {
+        return $this->hasOne(Karyawan::class);
+    }
+
+    public function task()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    public function financial()
+    {
+        return $this->hasMany(Financial::class);
+    }
+
+    public function absensi()
+    {
+        return $this->hasMany(Absensi::class);
+    }
+
+    public function leveluser()
+    {
+        return $this->belongsTo('App\Models\LevelUser', 'level_id');
+    }
 }

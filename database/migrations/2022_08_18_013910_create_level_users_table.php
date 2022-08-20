@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStatusPekerjaansTable extends Migration
+class CreateLevelUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateStatusPekerjaansTable extends Migration
      */
     public function up()
     {
-        Schema::create('status_pekerjaans', function (Blueprint $table) {
-            $table->id('status_id');
+        Schema::create('level_users', function (Blueprint $table) {
+            $table->id();
             $table->string('nama');
             $table->timestamps();
         });
@@ -27,6 +27,6 @@ class CreateStatusPekerjaansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('status_pekerjaans');
+        Schema::dropIfExists('level_users');
     }
 }

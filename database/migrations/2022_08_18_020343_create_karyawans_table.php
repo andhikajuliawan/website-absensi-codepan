@@ -16,13 +16,15 @@ class CreateKaryawansTable extends Migration
     {
         Schema::create('karyawans', function (Blueprint $table) {
             $table->id('karyawan_id');
-            $table->foreignId('user_id');
-            $table->foreignId('status_id');
+            $table->foreignId('user_id')->constrained();
+            $table->unsignedBigInteger('status_id');
             $table->string('nama_lengkap');
             $table->integer('nomor_hp');
             $table->string('alamat');
             $table->string('divisi');
             $table->timestamps();
+
+            $table->foreign('status_id')->references('id')->on('status_pekerjaans');
         });
     }
 

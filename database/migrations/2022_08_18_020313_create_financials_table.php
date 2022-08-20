@@ -15,7 +15,7 @@ class CreateFinancialsTable extends Migration
     {
         Schema::create('financials', function (Blueprint $table) {
             $table->id('financial_id');
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained();
             $table->string('name');
             $table->string('detail');
             $table->integer('pemasukan');

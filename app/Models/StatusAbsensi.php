@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class StatusAbsensi extends Model
 {
     use HasFactory;
+
+    public function absensi()
+    {
+        return $this->hasMany(Absensi::class);
+    }
 }

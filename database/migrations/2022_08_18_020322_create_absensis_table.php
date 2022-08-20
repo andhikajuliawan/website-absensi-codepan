@@ -15,12 +15,14 @@ class CreateAbsensisTable extends Migration
     {
         Schema::create('absensis', function (Blueprint $table) {
             $table->id('absensi_id');
-            $table->foreignId('user_id');
-            $table->foreignId('status_id');
+            $table->foreignId('user_id')->constrained();
+            $table->unsignedBigInteger('status_id');
             $table->date('tanggal');
             $table->time('masuk');
             $table->time('keluar');
             $table->timestamps();
+
+            $table->foreign('status_id')->references('id')->on('status_absensis');
         });
     }
 

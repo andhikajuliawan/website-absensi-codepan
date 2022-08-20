@@ -36,7 +36,7 @@
                                         <div class="mb-3">
                                             <input id="password" type="password"
                                                 class="form-control @error('password') is-invalid @enderror" name="password"
-                                                required autocomplete="current-password"
+                                                required autocomplete="current-password" placeholder="password"
                                                 style="
                                                 background-color: #eee;
                                                 border: 0px;
