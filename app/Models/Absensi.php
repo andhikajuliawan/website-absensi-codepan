@@ -9,6 +9,10 @@ class Absensi extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'status_id'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
