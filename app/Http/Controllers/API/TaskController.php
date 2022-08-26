@@ -3,27 +3,31 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Absensi;
+use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 
-class AbsensiController extends Controller
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $absensi_query = Absensi::with(['user', 'statusabsensi']);
-        $absensi = $absensi_query->get();
+        $task_query = Task::with(['user', 'statustask']);
 
-        // dd($absensi);
+        if ($request->user_id) {
+            $task_query->where('user_id', 'LIKE', '%' . $request->user_id . '%');
+        }
+
+        $task = $task_query->get();
+
 
         return response()->json([
-            'absensi' => $absensi
+            'status' => "ANJAYY SELAMATT",
+            'task_id' => $task
 
         ], 200);
     }
@@ -35,17 +39,23 @@ class AbsensiController extends Controller
      */
     public function create(Request $request, $id)
     {
-        $absensi = new Absensi;
-        $absensi->user_id = $id;
-        $absensi->status_id = 1;
-        $absensi->tanggal = Carbon::today();
-        $absensi->masuk = Carbon::now();
+        $request->validate([
+            'name' => 'required',
+            'detail' => 'required'
+        ]);
 
-        $absensi->save();
+        $task = new Task;
+        $task->user_id = $id;
+        $task->status_id = 2;
+        $task->name = $request->name;
+        $task->detail = $request->detail;
+        $task->save();
 
         return response()->json([
-            'status' => 'ANJAYYY anda berhasil',
-            'absensi' => $absensi,
+            'status' => 'Berhasil',
+            'task' => $task,
+            'nama' => $task->user->name,
+            'task_status' => $task->statustask->nama
         ], 200);
     }
 
@@ -79,12 +89,12 @@ class AbsensiController extends Controller
      */
     public function edit($id)
     {
-        $absensi = Absensi::find($id);
+        $task = Task::find($id);
 
         return response()->json([
             "status" => 'berhasil',
-            "detail-absensi" => $absensi,
-            "detail-status" => $absensi->statusabsensi->nama
+            "task" => $task,
+            'user_id' => $task->statustask->nama
         ], 200);
     }
 
@@ -97,14 +107,24 @@ class AbsensiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $absensi = Absensi::find($id);
 
-        $absensi->keluar = Carbon::now();
-        $absensi->save();
+        $task = Task::find($id);
+
+        $request->validate([
+            'status_id' => 'required|numeric',
+        ]);
+
+        $task->status_id = $request->status_id;
+        $task->name = $request->name;
+        $task->detail = $request->detail;
+
+
+        $task->save();
 
         return response()->json([
-            "status" => "ANJAYYY anda berhasil",
-            'absensi' => $absensi
+            'status' => 'Berhasil',
+            'task' => $task,
+            'status_task' => $task->statustask->nama
         ], 200);
     }
 
@@ -116,6 +136,13 @@ class AbsensiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $task = Task::find($id);
+
+        $task->delete();
+
+        return response()->json([
+            'status' => 'Berhasil',
+            'task' => $task
+        ], 200);
     }
 }

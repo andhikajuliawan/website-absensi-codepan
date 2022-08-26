@@ -15,7 +15,7 @@ class CreateKaryawansTable extends Migration
     public function up()
     {
         Schema::create('karyawans', function (Blueprint $table) {
-            $table->id('karyawan_id');
+            $table->id('id');
             $table->foreignId('user_id')->constrained();
             $table->unsignedBigInteger('status_id');
             $table->string('nama_lengkap');
