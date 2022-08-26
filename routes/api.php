@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'auth:sanctum'], function () {
 
     // AUTHENTICATION
-    Route::get('/form', [FormController::class, 'index']);
+
     Route::get('/logout', [AuthController::class, 'logout']);
 
     // TASK
