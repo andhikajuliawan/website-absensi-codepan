@@ -39,7 +39,8 @@ class HomeController extends Controller
 
 
 
-        return view('home', [
+        return view('dashboard', [
+            'pagetitle' => 'Dashboard',
             'users' => $users,
             'admins' => $admins,
             'karyawans' => $karyawans,
