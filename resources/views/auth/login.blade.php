@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <main class="main-content mt-0" style="background-image: url(../assets/img/background\ SignIn.png)">
+    <main class="main-content mt-0">
         <section>
             <div class="page-header min-vh-100">
                 <div class="container">
@@ -19,7 +19,7 @@
                                         <div class="mb-3">
                                             <input class="form-control @error('email') is-invalid @enderror" name="email"
                                                 value="{{ old('email') }}" required autocomplete="email" autofocus
-                                                placeholder="email"
+                                                placeholder="E-mail"
                                                 style="
                                                 background-color: #eee;
                                                 border: 0px;
@@ -36,7 +36,7 @@
                                         <div class="mb-3">
                                             <input id="password" type="password"
                                                 class="form-control @error('password') is-invalid @enderror" name="password"
-                                                required autocomplete="current-password" placeholder="password"
+                                                required autocomplete="current-password" placeholder="Password"
                                                 style="
                                                 background-color: #eee;
                                                 border: 0px;
