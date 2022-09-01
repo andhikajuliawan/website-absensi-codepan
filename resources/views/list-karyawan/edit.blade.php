@@ -26,24 +26,46 @@
       </div>
       <div class="col-md-6">
         <label for="exampleFormControlInput1" class="form-label"
-          >First Name</label
+          >Full Name</label
         >
         <input
           type="text"
           class="form-control"
           id="exampleFormControlInput1"
-          placeholder="Silahkan Masukkan First Name"
+          placeholder="Silahkan Masukkan Full Name"
         />
       </div>
       <div class="col-md-6">
         <label for="exampleFormControlInput1" class="form-label"
-          >Last Name</label
+          >Username</label
         >
         <input
           type="text"
           class="form-control"
           id="exampleFormControlInput1"
-          placeholder="Silahkan Masukkan Last Name"
+          placeholder="Silahkan Masukkan Username"
+        />
+      </div>
+      <div class="col-md-6">
+        <label for="exampleFormControlInput1" class="form-label"
+          >Password</label
+        >
+        <input
+          type="tel"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="Silahkan Masukkan Password"
+        />
+      </div>
+      <div class="col-md-6">
+        <label for="exampleFormControlInput1" class="form-label"
+          >Email</label
+        >
+        <input
+          type="email"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="Silahkan Masukkan Email"
         />
       </div>
       <div class="col-md-6">
@@ -59,39 +81,50 @@
       </div>
       <div class="col-md-6">
         <label for="exampleFormControlInput1" class="form-label"
-          >Email</label
-        >
-        <input
-          type="email"
-          class="form-control"
-          id="exampleFormControlInput1"
-          placeholder="Silahkan Masukkan Email"
-        />
-      </div>
-      <div class="col-md-12">
-        <label for="exampleFormControlInput1" class="form-label"
-          >Status</label
+          >Level</label
         >
         <select class="form-select" id="inputGroupSelect01">
-          <option selected>Silahkan Pilih Status</option>
+          <option selected>Silahkan Masukkan Level</option>
           <option value="1">One</option>
           <option value="2">Two</option>
           <option value="3">Three</option>
         </select>
       </div>
-      <div class="col-md-12 mb-3">
+      <div class="col-md-12">
+        <label for="exampleFormControlInput1" class="form-label"
+          >Address</label
+        >
+        <input
+          type="tel"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="Silahkan Masukkan Alamat Rumah"
+        />
+      </div>
+      <div class="col-md-6 mb-4">
+        <label for="exampleFormControlInput1" class="form-label"
+          >Status</label
+        >
+        <select class="form-select" id="inputGroupSelect01">
+          <option selected>Silahkan Masukkan Status</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+      <div class="col-md-6 mb-4">
         <label for="exampleFormControlInput1" class="form-label"
           >Division</label
         >
         <select class="form-select" id="inputGroupSelect01">
-          <option selected>Silahkan pilih Divisi</option>
+          <option selected>Silahkan Masukkan Divisi</option>
           <option value="1">One</option>
           <option value="2">Two</option>
           <option value="3">Three</option>
         </select>
       </div>
       <div class="col-md-6 d-grid gap-2">
-        <button type="submit" class="btn btn-outline-secondary">
+        <button type="button" class="btn btn-outline-secondary">
           <div class="d-flex align-items-center justify-content-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
