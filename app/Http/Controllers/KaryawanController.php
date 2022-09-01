@@ -16,13 +16,10 @@ class KaryawanController extends Controller
     {
         $users = User::all();
 
-        return view('list-karyawan.dashboard', [
+        return view('list-karyawan.index', [
             'pagetitle' => 'List Karyawan',
             'users' => $users
         ]);
-        // return view('list-karyawan.add', [
-        //     'pagetitle' => 'Add List Karyawan123'
-        // ]);
     }
 
     /**
@@ -33,14 +30,9 @@ class KaryawanController extends Controller
     public function create()
     {
         return view('list-karyawan.add', [
-            'pagetitle' => 'Add List Karyawan123'
-        ]);
-        // $users = User::all();
+            'pagetitle' => 'Create karyawan',
 
-        // return view('list-karyawan.add', [
-        //     'pagetitle' => 'List Karyawan',
-        //     'users' => $users
-        // ]);
+        ]);
     }
 
     /**

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Financial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FinancialController extends Controller
 {
@@ -13,8 +15,11 @@ class FinancialController extends Controller
      */
     public function index()
     {
-        return view('dashboard-financial', [
-            'pagetitle' => 'Financial'
+
+        $financials = Financial::all();
+        return view('financial.index', [
+            'pagetitle' => 'Financial',
+            'financials' => $financials
         ]);
     }
 
@@ -25,7 +30,7 @@ class FinancialController extends Controller
      */
     public function create()
     {
-        return view('dashboard-financial-add', [
+        return view('financial.add', [
             'pagetitle' => 'Financial'
         ]);
     }
@@ -38,7 +43,32 @@ class FinancialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // VALIDATION
+        $request->validate(
+            [
+                'name' => 'required',
+                'detail' => 'required',
+                'nominal' => 'required|numeric',
+                'tanggal' => 'required'
+
+            ]
+        );
+        $financial = new Financial();
+        $financial->user_id = Auth::user()->id;
+        $financial->name  = $request->input('name');
+        $financial->detail  = $request->input('detail');
+        if ($request->input('status') == "Pemasukan") {
+            $financial->pemasukan  = $request->input('nominal');
+            $financial->pengeluaran  = 0;
+        } else {
+            $financial->pengeluaran  = $request->input('nominal');
+            $financial->pemasukan  = 0;
+        }
+        $financial->tanggal = $request->input('tanggal');
+
+        $financial->save();
+        return redirect()->route('financials.index');
     }
 
     /**
@@ -49,7 +79,11 @@ class FinancialController extends Controller
      */
     public function show($id)
     {
-        //
+        $financial = Financial::findOrFail($id);
+        return view("financial.view", [
+            'pagetitle' => 'Financial',
+            'financial' => $financial
+        ]);
     }
 
     /**
@@ -60,7 +94,11 @@ class FinancialController extends Controller
      */
     public function edit($id)
     {
-        //
+        $financial = Financial::findOrFail($id);
+        return view('financial.edit', [
+            'pagetitle' => 'Financial',
+            'financial' => $financial
+        ]);
     }
 
     /**
@@ -72,7 +110,35 @@ class FinancialController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $financial = Financial::findOrFail($id);
+
+        // VALIDATION
+        $request->validate(
+            [
+                'name' => 'required',
+                'detail' => 'required',
+                'nominal' => 'required',
+                'tanggal' => 'required'
+
+            ]
+        );
+        $financial->user_id = Auth::user()->id;
+        $financial->name  = $request->input('name');
+        $financial->detail  = $request->input('detail');
+        if ($request->input('status') == "Pemasukan") {
+            $financial->pemasukan  = $request->input('nominal');
+            $financial->pengeluaran  = 0;
+        } else {
+            $financial->pengeluaran  = $request->input('nominal');
+            $financial->pemasukan  = 0;
+        }
+        $financial->tanggal = $request->input('tanggal');
+
+        // dd($financial);
+
+        $financial->save();
+        return redirect()->route('financials.show', ['financial' => $financial->id]);
     }
 
     /**
@@ -83,6 +149,8 @@ class FinancialController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $financial = Financial::find($id);
+        $financial->delete();
+        return redirect()->route('financials.index');
     }
 }

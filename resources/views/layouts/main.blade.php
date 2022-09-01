@@ -18,17 +18,17 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ 'assets/img/apple-icon.png' }}" />
-    <link rel="icon" type="image/png" href="{{ 'assets/img/favicon.png' }}" />
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/apple-icon.png') }}" />
+    <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}" />
     <title>Codepan Surabaya | {{ $pagetitle }}</title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
-    <link href="{{ 'assets/css/nucleo-icons.css' }}" rel="stylesheet" />
-    <link href="{{ 'assets/css/nucleo-svg.css' }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/nucleo-icons.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    <link href="{{ 'assets/css/nucleo-svg.css' }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ 'assets/css/argon-dashboard.css?v=2.0.4' }}" rel="stylesheet" />
 </head>
@@ -36,9 +36,7 @@
     integrity="sha384-xeJqLiuOvjUBq3iGOjvSQSIlwrpqjSHXpduPd6rQpuiM3f5/ijby8pCsnbu5S81n" crossorigin="anonymous">
 
 <body class="g-sidenav-show bg-gray-100">
-    @php
-        $route = Route::currentRouteName();
-    @endphp
+
     <div class="min-height-300 position-absolute w-100" style="background-color: #2196f3"></div>
     <aside
         class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4"
@@ -48,7 +46,7 @@
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0 text-center"
                 href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html " target="_blank">
-                <img src="{{ 'assets/img/Logo-Codepan.png' }}" class="navbar-brand-img h-100" alt="main_logo" />
+                <img src="{{ asset('assets/img/Logo-Codepan.png') }}" class="navbar-brand-img h-100" alt="main_logo" />
             </a>
         </div>
         <hr class="horizontal dark mt-0" />
@@ -164,7 +162,8 @@
                                     <a class="dropdown-item border-radius-md" href="javascript:;">
                                         <div class="d-flex py-1">
                                             <div class="my-auto">
-                                                <img src="../assets/img/team-1.jpg" class="avatar avatar-sm me-3" />
+                                                <img src="{{ asset('assets/img/team-1.jpg') }}"
+                                                    class="avatar avatar-sm me-3" />
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
                                                 <h6 class="text-sm font-weight-normal mb-1">
@@ -183,7 +182,7 @@
                                     <a class="dropdown-item border-radius-md" href="javascript:;">
                                         <div class="d-flex py-1">
                                             <div class="my-auto">
-                                                <img src="{{ 'assets/img/small-logos/logo-spotify.svg' }}"
+                                                <img src="{{ asset('assets/img/small-logos/logo-spotify.svg') }}"
                                                     class="avatar avatar-sm bg-gradient-dark me-3" />
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
@@ -452,7 +451,7 @@
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="{{ 'assets/js/argon-dashboard.min.js?v=2.0.4' }}"></script>
+    <script src="{{ asset('assets/js/argon-dashboard.min.js?v=2.0.4') }}"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

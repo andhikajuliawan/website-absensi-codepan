@@ -7,7 +7,7 @@
                 <p class="fw-bold fs-4 text-dark">List Karyawan</p>
             </div>
             <div class="col text-end">
-                <a href='{{ route('karyawans.create') }}'>
+                <a href="{{ route('karyawans.create') }}">
                     <button type="button" class="btn btn-primary" style="background-color: #2196f3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-plus-lg" viewBox="0 0 16 16">
