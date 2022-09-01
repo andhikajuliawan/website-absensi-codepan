@@ -14,7 +14,7 @@ class CreateFinancialsTable extends Migration
     public function up()
     {
         Schema::create('financials', function (Blueprint $table) {
-            $table->id('financial_id');
+            $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('name');
             $table->string('detail');
