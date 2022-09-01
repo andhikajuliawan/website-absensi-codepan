@@ -26,24 +26,46 @@
       </div>
       <div class="col-md-6">
         <label for="exampleFormControlInput1" class="form-label"
-          >First Name</label
+          >Full Name</label
         >
         <input
           type="text"
           class="form-control"
           id="exampleFormControlInput1"
-          placeholder="Silahkan masukkan first name"
+          placeholder="Silahkan Masukkan Full Name"
         />
       </div>
       <div class="col-md-6">
         <label for="exampleFormControlInput1" class="form-label"
-          >Last Name</label
+          >Username</label
         >
         <input
           type="text"
           class="form-control"
           id="exampleFormControlInput1"
-          placeholder="Silahkan Masukkan Last Name"
+          placeholder="Silahkan Masukkan Username"
+        />
+      </div>
+      <div class="col-md-6">
+        <label for="exampleFormControlInput1" class="form-label"
+          >Password</label
+        >
+        <input
+          type="tel"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="Silahkan Masukkan Password"
+        />
+      </div>
+      <div class="col-md-6">
+        <label for="exampleFormControlInput1" class="form-label"
+          >Email</label
+        >
+        <input
+          type="email"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="Silahkan Masukkan Email"
         />
       </div>
       <div class="col-md-6">
@@ -59,16 +81,27 @@
       </div>
       <div class="col-md-6">
         <label for="exampleFormControlInput1" class="form-label"
-          >Email</label
+          >Level</label
         >
-        <input
-          type="email"
-          class="form-control"
-          id="exampleFormControlInput1"
-          placeholder="Silahkan Masukkan Email"
-        />
+        <select class="form-select" id="inputGroupSelect01">
+          <option selected>Silahkan Masukkan Level</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
       </div>
       <div class="col-md-12">
+        <label for="exampleFormControlInput1" class="form-label"
+          >Address</label
+        >
+        <input
+          type="tel"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="Silahkan Masukkan Alamat Rumah"
+        />
+      </div>
+      <div class="col-md-6 mb-4">
         <label for="exampleFormControlInput1" class="form-label"
           >Status</label
         >
@@ -79,7 +112,7 @@
           <option value="3">Three</option>
         </select>
       </div>
-      <div class="col-md-12 mb-3">
+      <div class="col-md-6 mb-4">
         <label for="exampleFormControlInput1" class="form-label"
           >Division</label
         >
