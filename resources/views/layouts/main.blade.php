@@ -30,7 +30,7 @@
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
     <!-- CSS Files -->
-    <link id="pagestyle" href="{{ 'assets/css/argon-dashboard.css?v=2.0.4' }}" rel="stylesheet" />
+    <link id="pagestyle" href="{{ asset('assets/css/argon-dashboard.css?v=2.0.4') }}" rel="stylesheet" />
 </head>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
     integrity="sha384-xeJqLiuOvjUBq3iGOjvSQSIlwrpqjSHXpduPd6rQpuiM3f5/ijby8pCsnbu5S81n" crossorigin="anonymous">
@@ -340,11 +340,11 @@
         </div>
     </div>
     <!--   Core JS Files   -->
-    <script src="{{ 'assets/js/core/popper.min.js' }}"></script>
-    <script src="{{ 'assets/js/core/bootstrap.min.js' }}"></script>
-    <script src="{{ 'assets/js/plugins/perfect-scrollbar.min.js' }}"></script>
-    <script src="{{ 'assets/js/plugins/smooth-scrollbar.min.js' }}"></script>
-    <script src="{{ 'assets/js/plugins/chartjs.min.js' }}"></script>
+    <script src="{{ asset ('assets/js/core/popper.min.js')}}"></script>
+    <script src="{{ asset ('assets/js/core/bootstrap.min.js')}}"></script>
+    <script src="{{ asset ('assets/js/plugins/perfect-scrollbar.min.js')}}"></script>
+    <script src="{{ asset ('assets/js/plugins/smooth-scrollbar.min.js')}}"></script>
+    <script src="{{ asset ('assets/js/plugins/chartjs.min.js')}}"></script>
     <script>
         var ctx1 = document.getElementById("chart-line").getContext("2d");
 
