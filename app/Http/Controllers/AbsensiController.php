@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Absensi;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 
 class AbsensiController extends Controller
 {
@@ -16,7 +18,7 @@ class AbsensiController extends Controller
     {
         $absensis = Absensi::all();
 
-        return view('dashboard-absensi', [
+        return view('absensi.index', [
             'pagetitle' => 'Absensi',
             'absensis' => $absensis,
         ]);

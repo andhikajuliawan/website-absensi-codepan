@@ -40,7 +40,7 @@ class AccountController extends Controller
 
             return response()->json([
                 'status' => 'BERHASIL MASUK SEBAGAI ADMIN',
-                'admin' => $admin,
+                'account' => $admin,
                 'user_id' => $admin->user,
                 'level' => $admin->statuspekerjaan
             ], 200);
@@ -51,7 +51,7 @@ class AccountController extends Controller
 
             return response()->json([
                 'status' => 'BERHASIL MASUK SEBAGAI KARYAWAN',
-                'karyawan' => $karyawan,
+                'account' => $karyawan,
                 'user_id' => $karyawan->user,
                 'level' => $karyawan->statuspekerjaan
             ], 200);
@@ -125,7 +125,7 @@ class AccountController extends Controller
 
             return response()->json([
                 'status' => 'BERHASIL UPDATE SEBAGAI ADMIN',
-                'admin' => $admin,
+                'account' => $admin,
             ], 200);
         } else {
             $karyawan = User::find($id);
@@ -141,7 +141,7 @@ class AccountController extends Controller
 
             return response()->json([
                 'status' => 'BERHASIL UPDATE SEBAGAI KARYAWAN',
-                'karyawan' => $karyawan,
+                'account' => $karyawan,
             ], 200);
         }
     }
