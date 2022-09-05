@@ -38,9 +38,11 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
 
 
-// Route::get('/login', function () {
-//     return view('auth.login');
-// });
+Route::get('/viewizin', function () {
+    return view('view-perizinan', [
+        'pagetitle' => 'Form Perizinan'
+    ]);
+});
 
 // Route::get('/register', function () {
 //     return view('auth.register');
