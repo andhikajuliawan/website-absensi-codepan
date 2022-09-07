@@ -138,7 +138,8 @@ class FinancialController extends Controller
         // dd($financial);
 
         $financial->save();
-        return redirect()->route('financials.show', ['financial' => $financial->id]);
+        // return redirect()->route('financials.show', ['financial' => $financial->id]);
+        return redirect()->route('financials.index');
     }
 
     /**

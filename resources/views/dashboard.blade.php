@@ -119,106 +119,54 @@
             <div class="col-lg-5">
                 <div class="card">
                     <div class="card-header pb-0 p-3">
-                        <h6 class="mb-0">Categories</h6>
+                        <h6 class="mb-0">Absensi</h6>
                     </div>
                     <div class="card-body p-3" style="overflow: auto; height: 350px">
                         <ul class="list-group">
-                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                <div class="d-flex align-items-center">
-                                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                                        <i class="ni ni-mobile-button text-white opacity-10"></i>
+                            @foreach ($absensis as $absensi)
+                                <li
+                                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex align-items-center">
+                                        <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
+                                            <i class="ni ni-mobile-button text-white opacity-10"></i>
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <h6 class="mb-1 text-dark text-sm">
+                                                {{ $absensi->user->name }}
+                                            </h6>
+                                            <span class="text-xs">
+                                                @if ($absensi->user->level_id === 1)
+                                                    {{ $absensi->user->admin->divisi }}
+                                                @else
+                                                    {{ $absensi->user->karyawan->divisi }}
+                                                @endif
+                                            </span>
+                                        </div>
                                     </div>
-                                    <div class="d-flex flex-column">
-                                        <h6 class="mb-1 text-dark text-sm">
-                                            Pratama Ramadhani W - 01
-                                        </h6>
-                                        <span class="text-xs">Intership</span>
+                                    <div class="d-flex align-items-center justify-content-end" style="width: 20%">
+                                        @if ($absensi->statusabsensi->nama == 'hadir')
+                                            <span class="badge p-1 bg-gradient-success" style="width: 70%">
+                                                <p class="text-sm font-weight-bold mb-0 text-lowercase">
+                                                    {{ $absensi->statusabsensi->nama }}
+                                                </p>
+                                            </span>
+                                        @elseif ($absensi->statusabsensi->nama == 'izin')
+                                            <span class="badge p-1 bg-gradient-warning " style="width: 70%">
+                                                <p class="text-sm font-weight-bold mb-0 text-lowercase">
+                                                    {{ $absensi->statusabsensi->nama }}
+                                                </p>
+                                            </span>
+                                        @else
+                                            <span class="badge p-1 bg-gradient-danger" style="width: 70%">
+                                                <p class="text-sm font-weight-bold mb-0 text-lowercase">
+                                                    {{ $absensi->statusabsensi->nama }}
+                                                </p>
+                                            </span>
+                                        @endif
                                     </div>
-                                </div>
-                                <div class="d-flex">
-                                    <p class="text-sm fw-bold text-dark">Hadir</p>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                <div class="d-flex align-items-center">
-                                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                                        <i class="ni ni-mobile-button text-white opacity-10"></i>
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <h6 class="mb-1 text-dark text-sm">
-                                            Pratama Ramadhani W - 02
-                                        </h6>
-                                        <span class="text-xs">Intership</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex">
-                                    <p class="text-sm fw-bold text-dark">Hadir</p>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                <div class="d-flex align-items-center">
-                                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                                        <i class="ni ni-mobile-button text-white opacity-10"></i>
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <h6 class="mb-1 text-dark text-sm">
-                                            Pratama Ramadhani W - 03
-                                        </h6>
-                                        <span class="text-xs">Intership</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex">
-                                    <p class="text-sm fw-bold text-dark">Hadir</p>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                <div class="d-flex align-items-center">
-                                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                                        <i class="ni ni-mobile-button text-white opacity-10"></i>
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <h6 class="mb-1 text-dark text-sm">
-                                            Pratama Ramadhani W - 04
-                                        </h6>
-                                        <span class="text-xs">Intership</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex">
-                                    <p class="text-sm fw-bold text-dark">Hadir</p>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                <div class="d-flex align-items-center">
-                                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                                        <i class="ni ni-mobile-button text-white opacity-10"></i>
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <h6 class="mb-1 text-dark text-sm">
-                                            Pratama Ramadhani W - 05
-                                        </h6>
-                                        <span class="text-xs">Intership</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex">
-                                    <p class="text-sm fw-bold text-dark">Hadir</p>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                <div class="d-flex align-items-center">
-                                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                                        <i class="ni ni-mobile-button text-white opacity-10"></i>
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <h6 class="mb-1 text-dark text-sm">
-                                            Pratama Ramadhani W - 06
-                                        </h6>
-                                        <span class="text-xs">Intership</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex">
-                                    <p class="text-sm fw-bold text-dark">Hadir</p>
-                                </div>
-                            </li>
+
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>

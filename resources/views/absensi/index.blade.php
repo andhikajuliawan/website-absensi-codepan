@@ -135,16 +135,18 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        @if ($absensi->statusabsensi->nama == 'izin')
-                                            <a role="button" href="#" class="text-sm btn btn-danger btn-sm mb-0 p-1"
-                                                style="width: 70%">
+                                        @if ($absensi->validate == false)
+                                            <a role="button"
+                                                href="{{ route('absensis.edit', ['absensi' => $absensi->id]) }}"
+                                                class="text-sm btn btn-danger btn-sm mb-0 p-1" style="width: 70%">
 
-                                                <span>Check</span>
+                                                <span>Check {{ $absensi->statusabsensi->validate }}</span>
                                             </a>
                                         @else
-                                            <a role="button" href="#"
+                                            <a role="button"
+                                                href="{{ route('absensis.show', ['absensi' => $absensi->id]) }}"
                                                 class="text-sm btn btn-outline-secondary btn-sm mb-0 p-1"
-                                                style="width: 70%">View
+                                                style="width: 70%">View {{ $absensi->statusabsensi->validate }}
                                             </a>
                                         @endif
 

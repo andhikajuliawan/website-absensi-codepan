@@ -132,7 +132,8 @@
                     </div>
                     <ul class="navbar-nav justify-content-end">
                         <li class="nav-item d-flex align-items-center">
-                            <a href="/DBakun" class="nav-link text-white font-weight-bold px-0">
+                            <a href="{{ route('akuns.edit', ['akun' => Auth::user()->id]) }}"
+                                class="nav-link text-white font-weight-bold px-0">
                                 <i class="fa fa-user me-sm-1"></i>
                                 <span class="d-sm-inline d-none">{{ Auth::user()->name }}</span>
                             </a>
@@ -340,11 +341,11 @@
         </div>
     </div>
     <!--   Core JS Files   -->
-    <script src="{{ asset ('assets/js/core/popper.min.js')}}"></script>
-    <script src="{{ asset ('assets/js/core/bootstrap.min.js')}}"></script>
-    <script src="{{ asset ('assets/js/plugins/perfect-scrollbar.min.js')}}"></script>
-    <script src="{{ asset ('assets/js/plugins/smooth-scrollbar.min.js')}}"></script>
-    <script src="{{ asset ('assets/js/plugins/chartjs.min.js')}}"></script>
+    <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/chartjs.min.js') }}"></script>
     <script>
         var ctx1 = document.getElementById("chart-line").getContext("2d");
 

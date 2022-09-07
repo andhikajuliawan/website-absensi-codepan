@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Absensi;
+use App\Models\Admin;
+use App\Models\Karyawan;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
-
-class AbsensiController extends Controller
+class AkunController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,12 +17,7 @@ class AbsensiController extends Controller
      */
     public function index()
     {
-        $absensis = Absensi::all();
-
-        return view('absensi.index', [
-            'pagetitle' => 'Absensi',
-            'absensis' => $absensis,
-        ]);
+        //
     }
 
     /**
@@ -53,11 +49,7 @@ class AbsensiController extends Controller
      */
     public function show($id)
     {
-        $absensi = Absensi::findOrFail($id);
-        return view('absensi.view', [
-            'pagetitle' => 'Absensi',
-            'absensi' => $absensi
-        ]);
+        //
     }
 
     /**
@@ -68,11 +60,12 @@ class AbsensiController extends Controller
      */
     public function edit($id)
     {
-        // dd($id);
-        $absensi = Absensi::findOrFail($id);
-        return view('absensi.edit', [
-            'pagetitle' => 'Absensi',
-            'absensi' => $absensi
+        $user = User::findOrFail($id);
+
+
+        return view('akun.edit', [
+            'pagetitle' => 'akun',
+            'user' => $user
         ]);
     }
 
@@ -85,27 +78,41 @@ class AbsensiController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = User::findOrFail($id);
+        if ($user->level_id == 1) {
+            $admin = Admin::findOrFail($user->admin->id);
+        } else {
+            $karyawan = Karyawan::findOrFail($user->karyawan->id);
+        }
 
 
-        $absensi = Absensi::findOrFail($id);
 
+        // VALIDATE DATA
         $request->validate([
-            'validate' => 'numeric'
+            'username' => 'required',
+            'email' => 'required|email',
+            'namalengkap' => 'required',
+            'alamat' => 'required',
         ]);
 
-        // dd($request->input('validate'));
-
-        if ($request->input('validate') == "1") {
-            $absensi->status_id = $absensi->status_id;
+        // UPDATE DATA
+        $user->name = $request->input('username');
+        $user->email = $request->input('email');
+        if ($user->level_id == 1) {
+            $admin->nama_lengkap = $request->input('namalengkap');
         } else {
-            $absensi->status_id = 4;
+            $karyawan->nama_lengkap = $request->input('namalengkap');
         }
-        $absensi->validate = true;
-        $absensi->save();
+        if ($user->level_id == 1) {
+            $admin->alamat = $request->input('alamat');
+            $admin->save();
+        } else {
+            $karyawan->alamat = $request->input('alamat');
+            $karyawan->save();
+        }
+        $user->save();
 
-
-
-        return redirect()->route('absensis.index');
+        return redirect()->route('akuns.edit', ['akun' => $user->id]);
     }
 
     /**

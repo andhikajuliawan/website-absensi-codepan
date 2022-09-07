@@ -40,6 +40,8 @@ class AbsensiController extends Controller
         $absensi->status_id = 1;
         $absensi->tanggal = Carbon::today();
         $absensi->masuk = Carbon::now();
+        $absensi->validate = true;
+
 
         $absensi->save();
 

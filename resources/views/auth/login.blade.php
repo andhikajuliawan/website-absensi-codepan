@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <main class="main-content mt-0">
+    <main class="main-content mt-0" style="background-color: #fff">
         <section>
             <div class="page-header min-vh-100">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-lg-0 mx-auto px-0 py-6"
-                            style="background-color: #eee; border-radius: 20px 0 0 20px">
+                            style="background-color: #fff; border-radius: 20px 0 0 20px">
                             <div class="card card-plain">
                                 <div class="pb-0 text-center">
                                     <h4 class="font-weight-bolder">Sign In</h4>
@@ -21,7 +21,7 @@
                                                 value="{{ old('email') }}" required autocomplete="email" autofocus
                                                 placeholder="E-mail"
                                                 style="
-                                                background-color: #eee;
+                                                background-color: #fff;
                                                 border: 0px;
                                                 box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.24),
                                                     -4px -4px 10px rgba(255, 255, 255, 1);
@@ -38,7 +38,7 @@
                                                 class="form-control @error('password') is-invalid @enderror" name="password"
                                                 required autocomplete="current-password" placeholder="Password"
                                                 style="
-                                                background-color: #eee;
+                                                background-color: #fff;
                                                 border: 0px;
                                                 box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.24),
                                                   -4px -4px 10px rgba(255, 255, 255, 1);
@@ -52,7 +52,7 @@
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-lg btn-lg w-100 mt-4 mb-0 fs-6"
                                                 style="
-                                                  background-color: #eee;
+                                                  background-color: #fff;
                                                   border: 0px;
                                                   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.24),
                                                     -4px -4px 10px rgba(255, 255, 255, 1);
