@@ -41,8 +41,25 @@
                                         <div class="row">
                                             <div class="d-flex">
                                                 <div>
-                                                    <img src="../assets/img/team-3.jpg" alt="picture-img"
-                                                        class="avatar avatar-sm me-3" />
+                                                    @if ($user->leveluser->nama === 'admin')
+                                                        @if ($user->admin->encrypted_thumbnail)
+                                                            <img src="{{ asset('storage/thumbnails/' . $user->admin->encrypted_thumbnail) }}"
+                                                                alt="picture-img" class="avatar avatar-sm me-3" />
+                                                        @else
+                                                            <img src="../assets/img/team-3.jpg" alt="picture-img"
+                                                                class="avatar avatar-sm me-3" />
+                                                        @endif
+                                                    @else
+                                                        @if ($user->karyawan->encrypted_thumbnail)
+                                                            <img src="{{ asset('storage/thumbnails/' . $user->karyawan->encrypted_thumbnail) }}"
+                                                                alt="picture-img" class="avatar avatar-sm me-3" />
+                                                        @else
+                                                            <img src="../assets/img/team-3.jpg" alt="picture-img"
+                                                                class="avatar avatar-sm me-3" />
+                                                        @endif
+                                                    @endif
+                                                    {{-- <img src="../assets/img/team-3.jpg" alt="picture-img"
+                                                        class="avatar avatar-sm me-3" /> --}}
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center">
                                                     <h6 class="mb-0 text-sm">{{ $user->name }}</h6>

@@ -9,6 +9,7 @@ use App\Models\StatusPekerjaan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class KaryawanController extends Controller
 {
@@ -140,6 +141,7 @@ class KaryawanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // GET USER AND ADMIN/KARYAWAN ID
         $user = User::findOrFail($id);
         if ($user->level_id == 1) {
             $admin = Admin::findOrFail($user->admin->id);
@@ -161,7 +163,7 @@ class KaryawanController extends Controller
                     'level' => 'required',
                     'status' => 'required',
                     'divisi' => 'required',
-                    'address' => 'required'
+                    'address' => 'required',
                 ]
             );
         } else {
@@ -174,8 +176,28 @@ class KaryawanController extends Controller
                 'level' => 'required',
                 'status' => 'required',
                 'divisi' => 'required',
-                'address' => 'required'
+                'address' => 'required',
             ]);
+        }
+
+        // GET FILE THUMBNAIL
+        $file = $request->file('thumbnail');
+        if ($file != null) {
+            $originalThumbnail = $file->getClientOriginalName();
+            $encryptedThumbnail = $file->hashName();
+
+            // DELETE EXISTING THUMBNAIL
+            if ($user->level_id == 1) {
+                Storage::disk('public')->delete('thumbnails/' . $user->admin->encrypted_thumbnail);
+            } else {
+                Storage::disk('public')->delete('thumbnails/' . $user->karyawan->encrypted_thumbnail);
+            }
+
+            // STORE FILE
+            $file->store('public/thumbnails');
+        } else {
+            $originalThumbnail = null;
+            $encryptedThumbnail = null;
         }
 
         // UPDATE DATA FOR USER
@@ -194,10 +216,13 @@ class KaryawanController extends Controller
                 $admin->alamat = $request->input('address');
                 $admin->status_id = $request->input('status');
                 $admin->divisi = $request->input('divisi');
+                $admin->original_thumbnail = $originalThumbnail;
+                $admin->encrypted_thumbnail = $encryptedThumbnail;
 
                 $admin->save();
             } else {
-
+                $backup_original_thumbnail = $admin->original_thumbnail;
+                $backup_encrypted_thumbnail = $admin->encrypted_thumbnail;
                 $admin->delete();
 
                 $karyawan = new Karyawan();
@@ -207,6 +232,8 @@ class KaryawanController extends Controller
                 $karyawan->nomor_hp = $request->input('phone');
                 $karyawan->alamat = $request->input('address');
                 $karyawan->divisi = $request->input('divisi');
+                $karyawan->original_thumbnail = $backup_original_thumbnail;
+                $karyawan->encrypted_thumbnail = $backup_encrypted_thumbnail;
                 $karyawan->save();
             }
         } else {
@@ -216,10 +243,13 @@ class KaryawanController extends Controller
                 $karyawan->alamat = $request->input('address');
                 $karyawan->status_id = $request->input('status');
                 $karyawan->divisi = $request->input('divisi');
+                $karyawan->original_thumbnail = $originalThumbnail;
+                $karyawan->encrypted_thumbnail = $encryptedThumbnail;
 
                 $karyawan->save();
             } else {
-
+                $backup_original_thumbnail = $karyawan->original_thumbnail;
+                $backup_encrypted_thumbnail = $karyawan->encrypted_thumbnail;
                 $karyawan->delete();
 
                 $admin = new Admin();
@@ -229,6 +259,8 @@ class KaryawanController extends Controller
                 $admin->nomor_hp = $request->input('phone');
                 $admin->alamat = $request->input('address');
                 $admin->divisi = $request->input('divisi');
+                $admin->original_thumbnail = $backup_original_thumbnail;
+                $admin->encrypted_thumbnail = $backup_encrypted_thumbnail;
                 $admin->save();
             }
         }
@@ -248,9 +280,11 @@ class KaryawanController extends Controller
         $user = User::findOrFail($id);
         if ($user->level_id == 1) {
             $admin = Admin::findOrFail($user->admin->id);
+            Storage::disk('public')->delete('thumbnails/' . $admin->encrypted_thumbnail);
             $admin->delete();
         } else {
             $karyawan = Karyawan::findOrFail($user->karyawan->id);
+            Storage::disk('public')->delete('thumbnails/' . $karyawan->encrypted_thumbnail);
             $karyawan->delete();
         }
         $user->delete();

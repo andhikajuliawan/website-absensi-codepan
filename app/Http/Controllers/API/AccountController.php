@@ -7,6 +7,7 @@ use App\Models\Admin;
 use App\Models\Karyawan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AccountController extends Controller
 {
@@ -38,20 +39,28 @@ class AccountController extends Controller
 
             $admin = Admin::find($account->admin->id);
 
+            $thumbnail = Storage::url('public/thumbnails' . $admin->encrypted_thumbnail);
+
             return response()->json([
                 'status' => 'BERHASIL MASUK SEBAGAI ADMIN',
                 'account' => $admin,
+                'picture' => $thumbnail,
                 'user_id' => $admin->user,
-                'level' => $admin->statuspekerjaan
+                'level' => $admin->statuspekerjaan,
+
             ], 200);
         } else {
             $karyawan = User::find($id);
 
             $karyawan = Karyawan::find($account->karyawan->id);
 
+            $thumbnail = Storage::url('public/thumbnails' . $karyawan->encrypted_thumbnail);
+
+
             return response()->json([
                 'status' => 'BERHASIL MASUK SEBAGAI KARYAWAN',
                 'account' => $karyawan,
+                'picture' => $thumbnail,
                 'user_id' => $karyawan->user,
                 'level' => $karyawan->statuspekerjaan
             ], 200);

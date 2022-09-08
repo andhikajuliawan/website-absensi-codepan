@@ -7,6 +7,7 @@ use App\Http\Controllers\KaryawanController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,20 +32,18 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::resource('karyawans', KaryawanController::class);
     Route::resource('financials', FinancialController::class);
     Route::resource('akuns', AkunController::class);
-    Route::get('/DBakun', function () {
-        return view('dashboard-akun', [
-            'pagetitle' => 'Account'
-        ]);
+
+    // GET URL THUMBNAILS
+    Route::get('thumbnails', function () {
+        return Storage::url('public/thumbnails/' . Auth::user()->admin->encrypted_thumbnail);
     });
 });
 
 
 
-Route::get('/viewizin', function () {
-    return view('view-perizinan', [
-        'pagetitle' => 'Form Perizinan'
-    ]);
-});
+
+
+
 
 // Route::get('/register', function () {
 //     return view('auth.register');
