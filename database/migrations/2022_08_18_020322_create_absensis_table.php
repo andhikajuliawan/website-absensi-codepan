@@ -20,6 +20,9 @@ class CreateAbsensisTable extends Migration
             $table->date('tanggal');
             $table->time('masuk');
             $table->time('keluar')->nullable();
+            $table->string('evidence')->nullable();
+            $table->string('detail')->nullable();
+            $table->boolean('validate');
             $table->timestamps();
 
             $table->foreign('status_id')->references('id')->on('status_absensis');

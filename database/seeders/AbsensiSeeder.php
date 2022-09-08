@@ -20,7 +20,10 @@ class AbsensiSeeder extends Seeder
                 'status_id' => 2,
                 'tanggal' => date("Y-m-d"),
                 'masuk' => date("Y-m-d H:i:s"),
-                'keluar' => date("Y-m-d H:i:s")
+                'keluar' => date("Y-m-d H:i:s"),
+                'evidence' => "Surat-Dokter.jpg",
+                'detail' => "Lorem ipsum dolor sit amet, Lorem Ipsum is simply dummy text of the printing.",
+                'validate' => false
             ]
         ]);
     }

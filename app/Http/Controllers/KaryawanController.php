@@ -234,7 +234,7 @@ class KaryawanController extends Controller
         }
         $user->level_id = $request->input('level');
         $user->save();
-        return redirect()->route('karyawans.show', ['karyawan' => $user->id]);
+        return redirect()->route('karyawans.index');
     }
 
     /**

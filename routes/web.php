@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\AkunController;
 use App\Http\Controllers\FinancialController;
 use App\Http\Controllers\KaryawanController;
 use App\Models\User;
@@ -29,6 +30,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::resource('absensis', AbsensiController::class);
     Route::resource('karyawans', KaryawanController::class);
     Route::resource('financials', FinancialController::class);
+    Route::resource('akuns', AkunController::class);
     Route::get('/DBakun', function () {
         return view('dashboard-akun', [
             'pagetitle' => 'Account'
