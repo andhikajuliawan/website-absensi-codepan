@@ -33,70 +33,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::resource('financials', FinancialController::class);
     Route::resource('akuns', AkunController::class);
 
-    // GET URL THUMBNAILS
-    Route::get('thumbnails', function () {
-        return Storage::url('public/thumbnails/' . Auth::user()->admin->encrypted_thumbnail);
-    });
+    // DOWNLOAD QR CODE
+    Route::get('downloadQR', [App\Http\Controllers\AbsensiController::class, 'downloadQR'])->name('absensis.downloadQR');
+
+    // AUTO CHECKOUT
+    Route::get('autoCheckOut', [App\Http\Controllers\AbsensiController::class, 'autoCheckOut'])->name('absensis.autoCheckOut');
 });
-
-
-
-
-
-
-
-// Route::get('/register', function () {
-//     return view('auth.register');
-// });
-
-// Route::get('/DBabsensi', function () {
-//     return view('dashboard-absensi', [
-//         'pagetitle' => 'Absensi'
-
-//     ]);
-// });
-// Route::get('/DBakun', function () {
-//     return view('dashboard-akun', [
-//         'pagetitle' => 'Account'
-//     ]);
-// });
-// Route::get('/', function () {
-//     return view('welcome', [
-//         'pagetitle' => 'Dashboard'
-//     ]);
-// });
-// Route::get('/DBfinancial/add', function () {
-//     return view('dashboard-financial-add', [
-//         'pagetitle' => 'Add Financial'
-//     ]);
-// });
-// Route::get('/DBfinancial/edit', function () {
-//     return view('dashboard-financial-edit', [
-//         'pagetitle' => 'Edit Financial'
-//     ]);
-// });
-// Route::get('/DBfinancial/view', function () {
-//     return view('dashboard-financial-view', [
-//         'pagetitle' => 'View Financial'
-//     ]);
-// });
-// Route::get('/DBfinancial', function () {
-//     return view('dashboard-financial', [
-//         'pagetitle' => 'Financial'
-//     ]);
-// });
-// Route::get('/DBlistadd', function () {
-//     return view('list-karyawan.add', [
-//         'pagetitle' => 'Add List Karyawan123'
-//     ]);
-// });
-// Route::get('/DBlistedit', function () {
-//     return view('dashboard-list-karyawan-edit', [
-//         'pagetitle' => 'Edit List Karyawan'
-//     ]);
-// });
-// Route::get('/DBlist', function () {
-//     return view('dashboard-list-karyawan', [
-//         'pagetitle' => 'List Karyawan'
-//     ]);
-// });

@@ -39,6 +39,7 @@ class AccountController extends Controller
 
             $admin = Admin::find($account->admin->id);
 
+            // GET URL FOR THUMBNAIL
             $thumbnail = Storage::url('public/thumbnails' . $admin->encrypted_thumbnail);
 
             return response()->json([
@@ -54,8 +55,8 @@ class AccountController extends Controller
 
             $karyawan = Karyawan::find($account->karyawan->id);
 
+            // GET URL FOR THUMBNAIL
             $thumbnail = Storage::url('public/thumbnails' . $karyawan->encrypted_thumbnail);
-
 
             return response()->json([
                 'status' => 'BERHASIL MASUK SEBAGAI KARYAWAN',

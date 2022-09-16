@@ -119,7 +119,7 @@
             <div class="col-lg-5">
                 <div class="card">
                     <div class="card-header pb-0 p-3">
-                        <h6 class="mb-0">Absensi</h6>
+                        <h6 class="mb-0">Absensi Hari Ini</h6>
                     </div>
                     <div class="card-body p-3" style="overflow: auto; height: 350px">
                         <ul class="list-group">

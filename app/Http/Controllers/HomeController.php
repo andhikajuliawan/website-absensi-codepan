@@ -8,6 +8,7 @@ use App\Models\Financial;
 use App\Models\Karyawan;
 use App\Models\Task;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -34,7 +35,8 @@ class HomeController extends Controller
         $admins = Admin::all();
         $karyawans = Karyawan::all();
         $tasks = Task::all();
-        $absensis = Absensi::all();
+        $date = Carbon::today();
+        $absensis = Absensi::where('tanggal', $date)->get();
         $financials = Financial::all();
 
 
