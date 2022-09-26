@@ -26,7 +26,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['middleware' => 'auth:sanctum'], function () {
+Route::group(['middleware' => ['auth:sanctum', 'checklevel:admin']], function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
     Route::resource('absensis', AbsensiController::class);
     Route::resource('karyawans', KaryawanController::class);
@@ -36,6 +36,11 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     // DOWNLOAD QR CODE
     Route::get('downloadQR', [App\Http\Controllers\AbsensiController::class, 'downloadQR'])->name('absensis.downloadQR');
 
-    // AUTO CHECKOUT
-    Route::get('autoCheckOut', [App\Http\Controllers\AbsensiController::class, 'autoCheckOut'])->name('absensis.autoCheckOut');
+    // // AUTO CHECKOUT
+    // Route::get('autoCheckOut', [App\Http\Controllers\AbsensiController::class, 'autoCheckOut'])->name('absensis.autoCheckOut');
+});
+
+Route::group(['middleware' => ['auth:sanctum', 'checklevel:admin,karyawan']], function () {
+    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+    Route::resource('akuns', AkunController::class);
 });

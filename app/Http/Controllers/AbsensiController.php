@@ -125,9 +125,18 @@ class AbsensiController extends Controller
         return Storage::download('public/QRcode/QRcode-codepan-studio-surabaya.png', 'QR Code Absensi Codepan Surabaya');
     }
 
+    // Untuk Sementara menggunakan laravel Schedule
     public function autoCheckOut()
     {
-        $findNoCheckout = Absensi::where('keluar', null)->get();
+
+        // $findNoCheckout = Absensi::where('keluar', null)->get();
+        // foreach ($findNoCheckout as $checkout) {
+        //     $updateCheckOut = Absensi::findOrFail($checkout->id);
+        //     $updateCheckOut->keluar = Carbon::now();
+        //     $updateCheckOut->save();
+        // }
+
+
         // $dt = Carbon::now();
         // if ($dt->hour >= 16) {
         //     // dd($dt->day);
@@ -140,6 +149,7 @@ class AbsensiController extends Controller
         //     // dd('belum');
         //     "a";
         // }
-        return redirect()->route('absensis.index');
+
+        // return redirect()->route('absensis.index');
     }
 }
