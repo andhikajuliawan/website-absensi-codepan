@@ -1,14 +1,14 @@
 @extends('layouts.main')
 
 @section('container')
-    <form action="{{ route('karyawans.update', ['karyawan' => $users->id]) }}" method="POST">
+    <form action="{{ route('karyawans.update', ['karyawan' => $users->id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="container py-4" style="width: 90%">
             <div class="row mx-3 bg-white px-4 py-4 justify-content-evenly shadow-lg" style="border-radius: 10px">
                 <div class="col-12 text-center my-3">
-                    <svg class="text-dark" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
-                        class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <svg class="text-dark" xmlns="http://www.w3.org/2000/svg" width="35" height="35"
+                        fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                         <path fill-rule="evenodd"
                             d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
@@ -38,11 +38,17 @@
                         @if ($users->level_id === 1) value="{{ old('fullname', $users->admin->nama_lengkap) }}"
                     @else
                     value="{{ old('fullname', $users->karyawan->nama_lengkap) }}" @endif />
+                    @error('fullname')
+                        <p class="text-danger mt-1 mb-1 " style="font-size: 12px">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="col-md-6">
                     <label for="exampleFormControlInput1" class="form-label">Username</label>
                     <input type="text" name="username" class="form-control" id="exampleFormControlInput1"
                         placeholder="Silahkan Masukkan Username" value="{{ old('username', $users->name) }}" />
+                    @error('username')
+                        <p class="text-danger mt-1 mb-1 " style="font-size: 12px">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="col-md-6">
                     <label for="exampleFormControlInput1" class="form-label">Phone</label>
@@ -51,6 +57,9 @@
                         @if ($users->level_id === 1) value="{{ old('phone', $users->admin->nomor_hp) }}"
                     @else
                     value="{{ old('phone', $users->karyawan->nomor_hp) }}" @endif />
+                    @error('phone')
+                        <p class="text-danger mt-1 mb-1 " style="font-size: 12px">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="col-md-6">
                     <label for="exampleFormControlInput1" class="form-label">Divisi</label>
@@ -59,13 +68,22 @@
                         @if ($users->level_id === 1) value="{{ old('divisi', $users->admin->divisi) }}"
                     @else
                     value="{{ old('divisi', $users->karyawan->divisi) }}" @endif />
+                    @error('divisi')
+                        <p class="text-danger mt-1 mb-1 " style="font-size: 12px">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="col-md-6">
                     <label for="exampleFormControlInput1" class="form-label">Level</label>
                     <select class="form-select" name="level" id="inputGroupSelect01">
-                        @foreach ($levels as $level)
-                            <option value="{{ $level->id }}""> {{ $level->nama }}</option>
-                        @endforeach
+                        @if ($users->level_id == 1)
+                            <option value="1">Admin</option>
+                            <option value="2">Karyawan</option>
+                        @else
+                            <option value="2">Karyawan</option>
+                            <option value="1">Admin</option>
+                        @endif
+
+
 
                     </select>
                 </div>
@@ -78,14 +96,29 @@
 
                     </select>
                 </div>
-                <div class="col-md-12 mb-4">
+                <div class="col-md-12">
                     <label for="exampleFormControlInput1" class="form-label">Address</label>
                     <input type="text" name="address" class="form-control" id="exampleFormControlInput1"
                         placeholder="Silahkan Masukkan Alamat Rumah"
                         @if ($users->level_id === 1) value="{{ old('address', $users->admin->alamat) }}"
                     @else
                     value="{{ old('address', $users->karyawan->alamat) }}" @endif />
+                    @error('address')
+                        <p class="text-danger mt-1 mb-1 " style="font-size: 12px">{{ $message }}</p>
+                    @enderror
                 </div>
+                <div class="col-md-12 mb-4">
+                    <label for="exampleFormControlInput1" class="form-label">Photo</label>
+                    <input type="file" name="thumbnail" class="form-control" id="thumbnail" accept="image/*"
+                        {{-- @if ($users->level_id === 1)
+                    value="{{ old('thumbnail', $users->admin->encrypted_thumbnail) }}"
+                @else
+                    value="{{ old('thumbnail', $users->karyawan->encrypted_thumbnail) }}" --}} />
+                    @error('thumbnail')
+                        <p class="text-danger mt-1 mb-1 " style="font-size: 12px">{{ $message }}</p>
+                    @enderror
+                </div>
+
                 <div class="col-md-6 d-grid gap-2">
                     <a role="button" class="btn btn-outline-secondary" href="{{ route('karyawans.index') }}">
                         <div class="d-flex align-items-center justify-content-center">

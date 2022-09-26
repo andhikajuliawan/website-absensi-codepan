@@ -7,13 +7,13 @@
         <div class="container-fluid py-4">
             <div class="px-3 my-4">
                 <h2 class="text-white">hola {{ $user->name }}</h2>
-                <h6 class="text-white" style="width: 60%">
+                <h6 class="text-white text-sm" style="width: 65%">
                     This is your profile page. You can see the progress you’ve made with
                     your work and manage your projects or assigned tasks
                 </h6>
             </div>
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-8 mb-4">
                     <div class="card shadow-lg">
                         <div class="card-header pb-0">
                             <div class="d-flex align-items-center">
@@ -86,10 +86,26 @@
                         <img src="{{ asset('assets/img/bg-profile.png') }}" alt="Image placeholder" class="card-img-top" />
                         <div class="row justify-content-center">
                             <div class="col-4 col-lg-4 order-lg-2">
-                                <div class="mt-n4 mt-lg-n6 mb-4 mb-lg-0">
+                                <div class="mt-n4 mt-lg-n6 mb-4 mb-lg-0 text-center">
                                     <a href="javascript:;">
-                                        <img src="{{ asset('assets/img/rama.png') }}"
-                                            class="rounded-circle img-fluid border border-2 border-white" />
+                                        @if ($user->leveluser->nama === 'admin')
+                                            @if ($user->admin->encrypted_thumbnail)
+                                                <img src="{{ asset('storage/thumbnails/' . $user->admin->encrypted_thumbnail) }}"
+                                                    class="rounded-circle img-fluid border border-2 border-white"
+                                                    style="object-fit:cover; width:100px; height:100px" />
+                                            @else
+                                                <img src="{{ asset('assets/img/team-3.jpg') }}" alt="picture-img"
+                                                    class="rounded-circle img-fluid border border-2 border-white" />
+                                            @endif
+                                        @else
+                                            @if ($user->karyawan->encrypted_thumbnail)
+                                                <img src="{{ asset('storage/thumbnails/' . $user->karyawan->encrypted_thumbnail) }}"
+                                                    class="rounded-circle img-fluid border border-2 border-white" />
+                                            @else
+                                                <img src="{{ asset('assets/img/team-3.jpg') }}" alt="picture-img"
+                                                    class="rounded-circle img-fluid border border-2 border-white" />
+                                            @endif
+                                        @endif
                                     </a>
                                 </div>
                             </div>

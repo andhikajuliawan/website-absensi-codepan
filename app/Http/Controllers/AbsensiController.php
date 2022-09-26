@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Absensi;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\Storage;
+use League\CommonMark\Extension\Attributes\Node\Attributes;
 
 class AbsensiController extends Controller
 {
@@ -16,7 +17,7 @@ class AbsensiController extends Controller
      */
     public function index()
     {
-        $absensis = Absensi::all();
+        $absensis = Absensi::all()->sortByDesc('id');
 
         return view('absensi.index', [
             'pagetitle' => 'Absensi',
@@ -117,5 +118,28 @@ class AbsensiController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function downloadQR()
+    {
+        return Storage::download('public/QRcode/QRcode-codepan-studio-surabaya.png', 'QR Code Absensi Codepan Surabaya');
+    }
+
+    public function autoCheckOut()
+    {
+        $findNoCheckout = Absensi::where('keluar', null)->get();
+        // $dt = Carbon::now();
+        // if ($dt->hour >= 16) {
+        //     // dd($dt->day);
+        //     // foreach ($findNoCheckout as $checkout) {
+        //     //     dd($checkout);
+        //     // }
+        //     // dd('sudah');
+        //     "a";
+        // } else {
+        //     // dd('belum');
+        //     "a";
+        // }
+        return redirect()->route('absensis.index');
     }
 }

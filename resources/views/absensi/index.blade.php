@@ -7,8 +7,8 @@
                 <p class="fw-bold fs-4 text-dark">Absensi</p>
             </div>
             <div class="col text-end">
-                <span><a href="#"><button type="button" class="btn btn-primary"
-                            style="background-color: #2196f3; font-size: 12px">
+                <span><a href="{{ route('absensis.downloadQR') }}">
+                        <button type="button" class="btn btn-primary" style="background-color: #2196f3; font-size: 12px">
                             <div class="d-flex justify-content-center mb-0">
                                 <p class="mb-0 text-xs font-weight-bolder px-1">Print Qr</p>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -21,9 +21,11 @@
                                     <path d="M7 12h1v3h4v1H7v-4Zm9 2v2h-3v-1h2v-1h1Z" />
                                 </svg>
                             </div>
-                        </button></a>
+                        </button>
+                    </a>
                 </span>
-                <span><a href="#"><button type="button" class="btn btn-primary"
+                <span>
+                    <a href="#"><button type="button" class="btn btn-primary"
                             style="background-color: #2196f3; font-size: 12px">
                             <div class="d-flex justify-content-center mb-0">
                                 <p class="mb-0 text-xs font-weight-bolder px-1">
@@ -65,13 +67,28 @@
                             </tr>
                         </thead>
                         <tbody>
-
                             @foreach ($absensis as $absensi)
                                 <tr>
                                     <th scope="row">
                                         <div class="d-flex px-2 py-1">
                                             <div>
-                                                <img src="../assets/img/team-3.jpg" class="avatar avatar-sm me-3" />
+                                                @if ($absensi->user->leveluser->nama === 'admin')
+                                                    @if ($absensi->user->admin->encrypted_thumbnail)
+                                                        <img src="{{ asset('storage/thumbnails/' . $absensi->user->admin->encrypted_thumbnail) }}"
+                                                            alt="picture-img" class="avatar avatar-sm me-3" />
+                                                    @else
+                                                        <img src="../assets/img/team-3.jpg" alt="picture-img"
+                                                            class="avatar avatar-sm me-3" />
+                                                    @endif
+                                                @else
+                                                    @if ($absensi->user->karyawan->encrypted_thumbnail)
+                                                        <img src="{{ asset('storage/thumbnails/' . $absensi->user->karyawan->encrypted_thumbnail) }}"
+                                                            alt="picture-img" class="avatar avatar-sm me-3" />
+                                                    @else
+                                                        <img src="../assets/img/team-3.jpg" alt="picture-img"
+                                                            class="avatar avatar-sm me-3" />
+                                                    @endif
+                                                @endif
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
                                                 <h6 class="mb-0 text-sm">{{ $absensi->user->name }}</h6>
@@ -157,8 +174,7 @@
                         </tbody>
                     </table>
                 </div>
+                {{-- </div><a href="{{ route('absensis.autoCheckOut') }}" id="autoCheckOut"> tes</a> --}}
             </div>
-
         </div>
-    </div>
-@endsection
+    @endsection
