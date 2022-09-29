@@ -38,6 +38,13 @@ class HomeController extends Controller
         $date = Carbon::today();
         $absensis = Absensi::where('tanggal', $date)->get();
         $financials = Financial::all();
+        $jumlahKaryawans = count($users);
+        $gethadirs = Absensi::where([['status_id', '1'], ['tanggal', $date]])->get();
+        $hadirs = count($gethadirs);
+        $getizins = Absensi::where([['status_id', '2'], ['tanggal', $date]])->get();
+        $izins = count($getizins);
+        $getalfas = Absensi::where([['status_id', '3'], ['tanggal', $date]])->get();
+        $alfas = count($getalfas);
 
 
 
@@ -49,6 +56,10 @@ class HomeController extends Controller
             'tasks' => $tasks,
             'absensis' => $absensis,
             'financials' => $financials,
+            'jumlahKaryawans' => $jumlahKaryawans,
+            'hadirs' => $hadirs,
+            'izins' => $izins,
+            'alfas' => $alfas
         ]);
     }
 }

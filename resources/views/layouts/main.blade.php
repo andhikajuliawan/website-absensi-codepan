@@ -61,34 +61,37 @@
                         <span class="nav-link-text ms-1">Dashboard</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ $pagetitle === 'List Karyawan' ? 'active' : '' }}"
-                        href="{{ route('karyawans.index') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-people-fill text-primary text-lg opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">List Karyawan</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ $pagetitle === 'Absensi' ? 'active' : '' }}" href="/absensis">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-ui-checks text-primary text-lg opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Absensi</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ $pagetitle === 'Financial' ? 'active' : '' }}" href="/financials">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-cash-coin text-primary text-lg opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Financial</span>
-                    </a>
-                </li>
+                @if (Auth::user()->leveluser->nama == 'admin')
+                    <li class="nav-item">
+                        <a class="nav-link {{ $pagetitle === 'List Karyawan' ? 'active' : '' }}"
+                            href="{{ route('karyawans.index') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-people-fill text-primary text-lg opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">List Karyawan</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ $pagetitle === 'Absensi' ? 'active' : '' }}" href="/absensis">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-ui-checks text-primary text-lg opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Absensi</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ $pagetitle === 'Financial' ? 'active' : '' }}" href="/financials">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-cash-coin text-primary text-lg opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Financial</span>
+                        </a>
+                    </li>
+                @endif
+
             </ul>
         </div>
         <div class="sidenav-footer mx-3">
