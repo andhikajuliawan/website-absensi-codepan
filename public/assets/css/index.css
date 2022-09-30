@@ -1,0 +1,50 @@
+div.logo {
+    display: auto;
+  }
+  a.btn-download {
+    background-color: white;
+    color: #2196f3;
+  }
+  div.container-download {
+    display: flex;
+  }
+  /* h1.title-1 {
+    color: #2196f3;
+    z-index: 1;
+  } */
+
+  @media (max-width: 768px) {
+    /* div.logo {
+      display: none;
+    } */
+    div.full-home {
+      background-color: none;
+    }
+    h1.title-1 {
+      text-align: center;
+    }
+    img.download {
+      text-align: end;
+    }
+    a.btn-login {
+      background-color: white;
+      color: #2196f3;
+    }
+    body.body {
+      background-color: #2196f3;
+    }
+    div.container-download {
+      justify-content: center;
+      margin-bottom: 50px;
+    }
+  }
+
+  @media (min-width: 769px) {
+    div.full-home {
+      background-image: url("../img/background.png");
+    }
+    a.btn-login {
+      background-color: #2196f3;
+      color: white;
+    }
+  }
