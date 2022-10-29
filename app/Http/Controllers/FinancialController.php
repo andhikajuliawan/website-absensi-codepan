@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\FinancialExport;
 use App\Models\Financial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class FinancialController extends Controller
 {
@@ -15,8 +17,14 @@ class FinancialController extends Controller
      */
     public function index()
     {
+        $financials = Financial::orderBy('id', 'DESC')->paginate(2);
 
-        $financials = Financial::all();
+        if (request('search')) {
+            // dd(request('search'));
+
+            $financials = Financial::where('tanggal', 'like', '%' . request('search') . '%')->orderBy('id', 'DESC')->paginate(10);
+        }
+
         return view('financial.index', [
             'pagetitle' => 'Financial',
             'financials' => $financials
@@ -153,5 +161,10 @@ class FinancialController extends Controller
         $financial = Financial::find($id);
         $financial->delete();
         return redirect()->route('financials.index');
+    }
+
+    public function exportFinancialExcel()
+    {
+        return Excel::download(new FinancialExport, 'financial.xlsx');
     }
 }

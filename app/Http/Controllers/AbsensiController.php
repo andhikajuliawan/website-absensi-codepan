@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AbsensiExport;
 use App\Models\Absensi;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use League\CommonMark\Extension\Attributes\Node\Attributes;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AbsensiController extends Controller
 {
@@ -17,8 +20,19 @@ class AbsensiController extends Controller
      */
     public function index()
     {
-        $absensis = Absensi::all()->sortByDesc('id');
 
+        $absensis = Absensi::orderBy('id', 'DESC')->paginate(2);
+        if (request('search')) {
+            // $user = User::where('name', 'like', '%' . request('search') . '%')->first();
+            // $absensis = Absensi::whereHas('user', function ($query) {
+            //     return $query->where('user_id', 'like', '%' . request('search') . '%')->get();
+            // });
+
+            $absensis = Absensi::where('tanggal', 'like', '%' . request('search') . '%')->orderBy('id', 'DESC')->paginate(10);
+            // $absensis->paginate(2);
+            // dd($absensis);
+
+        }
         return view('absensi.index', [
             'pagetitle' => 'Absensi',
             'absensis' => $absensis,
@@ -151,5 +165,10 @@ class AbsensiController extends Controller
         // }
 
         // return redirect()->route('absensis.index');
+    }
+
+    public function exportAbsensiExcel()
+    {
+        return Excel::download(new AbsensiExport, 'absensi.xlsx');
     }
 }

@@ -24,6 +24,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// DOWNLOAD APLIKASI MOBILE
+Route::get('downloadMobile', [App\Http\Controllers\DownloadMobileController::class, 'downloadMobile'])->name('downloadmobiles.downloadMobile');
+
+
+
 Auth::routes();
 
 Route::group(['middleware' => ['auth:sanctum', 'checklevel:admin']], function () {
@@ -35,6 +40,11 @@ Route::group(['middleware' => ['auth:sanctum', 'checklevel:admin']], function ()
 
     // DOWNLOAD QR CODE
     Route::get('downloadQR', [App\Http\Controllers\AbsensiController::class, 'downloadQR'])->name('absensis.downloadQR');
+
+    // EXPORT EXCEL
+    Route::get('exportAbsensiExcel', [App\Http\Controllers\AbsensiController::class, 'exportAbsensiExcel'])->name('absensis.exportAbsensiExcel');
+    Route::get('exportFinancialExcel', [App\Http\Controllers\FinancialController::class, 'exportFinancialExcel'])->name('financials.exportFinancialExcel');
+
 
     // // AUTO CHECKOUT
     // Route::get('autoCheckOut', [App\Http\Controllers\AbsensiController::class, 'autoCheckOut'])->name('absensis.autoCheckOut');
