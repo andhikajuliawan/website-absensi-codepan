@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Absensi;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
-class AbsensiController extends Controller
+class DownloadMobileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,15 +14,7 @@ class AbsensiController extends Controller
      */
     public function index()
     {
-        $absensi_query = Absensi::with(['user.karyawan', 'user.admin', 'statusabsensi']);
-        $absensi = $absensi_query->get();
-
-        // dd($absensi);
-
-        return response()->json([
-            'absensi' => $absensi
-
-        ], 200);
+        //
     }
 
     /**
@@ -33,22 +22,9 @@ class AbsensiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, $id)
+    public function create()
     {
-        $absensi = new Absensi;
-        $absensi->user_id = $id;
-        $absensi->status_id = 1;
-        $absensi->tanggal = Carbon::today();
-        $absensi->masuk = Carbon::now();
-        $absensi->validate = true;
-
-
-        $absensi->save();
-
-        return response()->json([
-            'status' => 'ANJAYYY anda berhasil',
-            'absensi' => $absensi,
-        ], 200);
+        //
     }
 
     /**
@@ -81,13 +57,7 @@ class AbsensiController extends Controller
      */
     public function edit($id)
     {
-        $absensi = Absensi::find($id);
-
-        return response()->json([
-            "status" => 'berhasil',
-            "detail-absensi" => $absensi,
-            "detail-status" => $absensi->statusabsensi->nama
-        ], 200);
+        //
     }
 
     /**
@@ -99,15 +69,7 @@ class AbsensiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $absensi = Absensi::find($id);
-
-        $absensi->keluar = Carbon::now();
-        $absensi->save();
-
-        return response()->json([
-            "status" => "ANJAYYY anda berhasil",
-            'absensi' => $absensi
-        ], 200);
+        //
     }
 
     /**
@@ -119,5 +81,10 @@ class AbsensiController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function downloadMobile()
+    {
+        return Storage::download('public/DownloadMobile/iPhone-12-Pro.png', 'Absensi Codepan');
     }
 }

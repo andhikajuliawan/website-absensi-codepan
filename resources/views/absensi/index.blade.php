@@ -2,11 +2,22 @@
 
 @section('container')
     <div class="container-fluid py-4">
-        <div class="row mx-3 bg-white px-2 py-4 shadow" style="border-radius: 10px">
-            <div class="col">
+        <div class="row mx-3 bg-white px-2 py-4 shadow justify-content-between" style="border-radius: 10px">
+            <div class="col-12 text-center">
                 <p class="fw-bold fs-4 text-dark">Absensi</p>
             </div>
-            <div class="col text-end">
+            <div class="col-5 p-0">
+                <form action="{{ route('absensis.index') }}">
+                    <div class="input-group mb-3 m-0">
+                        <input type="date" class="form-control p-1" placeholder="search..." name="search">
+                        <button class="btn px-3 m-0" type="submit" style="background-color: #2196f3;color:white">
+                            Search
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+            <div class="col-lg-4 col-md-12 text-end">
                 <span><a href="{{ route('absensis.downloadQR') }}">
                         <button type="button" class="btn btn-primary" style="background-color: #2196f3; font-size: 12px">
                             <div class="d-flex justify-content-center mb-0">
@@ -25,7 +36,7 @@
                     </a>
                 </span>
                 <span>
-                    <a href="#"><button type="button" class="btn btn-primary"
+                    <a href="{{ route('absensis.exportAbsensiExcel') }}"><button type="button" class="btn btn-primary"
                             style="background-color: #2196f3; font-size: 12px">
                             <div class="d-flex justify-content-center mb-0">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -43,7 +54,7 @@
                         </button>
                     </a>
                 </span>
-                <span>
+                {{-- <span>
                     <a href="#"><button type="button" class="btn btn-primary"
                             style="background-color: #2196f3; font-size: 12px">
                             Sort By
@@ -54,8 +65,9 @@
                             </svg>
                         </button>
                     </a>
-                </span>
+                </span> --}}
             </div>
+
             <div class="card">
                 <div class="table-responsive">
                     <table class="table table-hover table-sm align-middle">
@@ -173,9 +185,12 @@
                                     </td>
                                 </tr>
                             @endforeach
-
                         </tbody>
                     </table>
+
+                    <div class="d-flex text-sm justify-content-end">
+                        {{ $absensis->links() }}
+                    </div>
                 </div>
                 {{-- </div><a href="{{ route('absensis.autoCheckOut') }}" id="autoCheckOut"> tes</a> --}}
             </div>
