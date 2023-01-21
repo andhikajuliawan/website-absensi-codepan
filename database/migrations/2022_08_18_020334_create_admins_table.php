@@ -18,7 +18,7 @@ class CreateAdminsTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->unsignedBigInteger('status_id');
             $table->string('nama_lengkap');
-            $table->integer('nomor_hp');
+            $table->string('nomor_hp');
             $table->string('alamat');
             $table->string('divisi');
             $table->timestamps();
